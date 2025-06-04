@@ -26,7 +26,7 @@ export function Hero() {
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6">
               Hi, I'm{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                Your Name
+               Manish 
               </span>
             </h1>
           </motion.div>
