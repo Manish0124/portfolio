@@ -16,7 +16,12 @@ const navItems = [
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme, resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +35,16 @@ export function Navigation() {
   const handleNavClick = (href: string) => {
     scrollToSection(href);
     setIsMobileMenuOpen(false);
+  };
+
+  const toggleTheme = () => {
+    if (theme === 'system') {
+      setTheme('dark');
+    } else if (theme === 'dark') {
+      setTheme('light');
+    } else {
+      setTheme('dark');
+    }
   };
 
   return (
@@ -67,12 +82,27 @@ export function Navigation() {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="w-9 h-9"
+              onClick={toggleTheme}
+              className="w-9 h-9 relative"
+              disabled={!mounted}
             >
-              <FiSun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-              <FiMoon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-              <span className="sr-only">Toggle theme</span>
+              {mounted && (
+                <>
+                  <FiSun className={`h-4 w-4 transition-all duration-300 ${
+                    resolvedTheme === 'dark'
+                      ? 'rotate-90 scale-0 opacity-0'
+                      : 'rotate-0 scale-100 opacity-100'
+                  }`} />
+                  <FiMoon className={`absolute h-4 w-4 transition-all duration-300 ${
+                    resolvedTheme === 'dark'
+                      ? 'rotate-0 scale-100 opacity-100'
+                      : '-rotate-90 scale-0 opacity-0'
+                  }`} />
+                </>
+              )}
+              <span className="sr-only">
+                {mounted ? `Switch to ${resolvedTheme === 'dark' ? 'light' : 'dark'} mode` : 'Toggle theme'}
+              </span>
             </Button>
 
             {/* Mobile menu button */}
