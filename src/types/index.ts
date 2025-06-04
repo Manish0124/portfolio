@@ -53,3 +53,31 @@ export interface SocialLink {
   url: string;
   icon: string;
 }
+
+export interface Review {
+  id: string;
+  reviewer_name: string;
+  reviewer_company?: string;
+  reviewer_email: string;
+  rating: number;
+  review_text: string;
+  is_approved: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface ReviewFormData {
+  reviewer_name: string;
+  reviewer_company?: string;
+  reviewer_email: string;
+  rating: number;
+  review_text: string;
+}
+
+export interface ReviewStats {
+  total_reviews: number;
+  average_rating: number;
+  rating_distribution: {
+    [key: number]: number;
+  };
+}

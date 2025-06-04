@@ -76,6 +76,41 @@ export type Database = {
           created_at?: string;
         };
       };
+      user_reviews: {
+        Row: {
+          id: string;
+          reviewer_name: string;
+          reviewer_company: string | null;
+          reviewer_email: string;
+          rating: number;
+          review_text: string;
+          is_approved: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          reviewer_name: string;
+          reviewer_company?: string | null;
+          reviewer_email: string;
+          rating: number;
+          review_text: string;
+          is_approved?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          reviewer_name?: string;
+          reviewer_company?: string | null;
+          reviewer_email?: string;
+          rating?: number;
+          review_text?: string;
+          is_approved?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+      };
     };
   };
 };

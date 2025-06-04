@@ -20,3 +20,28 @@ export const contactFormSchema = z.object({
 });
 
 export type ContactFormData = z.infer<typeof contactFormSchema>;
+
+export const reviewFormSchema = z.object({
+  reviewer_name: z
+    .string()
+    .min(2, 'Name must be at least 2 characters')
+    .max(50, 'Name must be less than 50 characters'),
+  reviewer_company: z
+    .string()
+    .max(100, 'Company must be less than 100 characters')
+    .optional(),
+  reviewer_email: z
+    .string()
+    .email('Please enter a valid email address')
+    .max(100, 'Email must be less than 100 characters'),
+  rating: z
+    .number()
+    .min(1, 'Rating must be at least 1 star')
+    .max(5, 'Rating must be at most 5 stars'),
+  review_text: z
+    .string()
+    .min(50, 'Review must be at least 50 characters')
+    .max(500, 'Review must be less than 500 characters'),
+});
+
+export type ReviewFormData = z.infer<typeof reviewFormSchema>;

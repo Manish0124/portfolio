@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
 import { contactFormSchema } from '@/lib/validations';
 import { Resend } from 'resend';
+
+// Use service role key for database operations to bypass RLS
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -17,7 +23,7 @@ export async function POST(request: NextRequest) {
     // Try to save to database
     let databaseSuccess = false;
     try {
-      const { data, error } = await supabase
+      const { data, error } = await supabaseAdmin
         .from('contact_submissions')
         .insert([
           {
