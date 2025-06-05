@@ -3,7 +3,7 @@ import { FiGithub, FiLinkedin, FiMail, FiTwitter } from 'react-icons/fi';
 const socialLinks = [
   {
     name: 'GitHub',
-    url: 'https://github.com/yourusername',
+    url: 'https://github.com/Manish0124',
     icon: FiGithub,
   },
   {
@@ -18,7 +18,7 @@ const socialLinks = [
   },
   {
     name: 'Email',
-    url: 'mailto:your.email@example.com',
+    url: 'mailto:manishgupta21044@gmail.com',
     icon: FiMail,
   },
 ];
