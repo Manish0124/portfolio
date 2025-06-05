@@ -134,7 +134,7 @@ export async function POST(request: NextRequest) {
       try {
         await resend.emails.send({
           from: 'Portfolio Reviews <noreply@yourdomain.com>',
-          to: ['your.email@example.com'],
+          to: ['mansihgupta21044@example@example.com'],
           subject: `New Review Submission - ${validatedData.rating} stars`,
           html: `
             <h2>New Review Submission</h2>

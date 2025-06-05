@@ -54,7 +54,7 @@ export async function POST(request: NextRequest) {
       try {
         await resend.emails.send({
           from: 'Portfolio Contact <noreply@yourdomain.com>',
-          to: ['your.email@example.com'],
+          to: ['mansihgupta21044@example.com'],
           subject: `New Contact Form Submission: ${validatedData.subject}`,
           html: `
             <h2>New Contact Form Submission</h2>
